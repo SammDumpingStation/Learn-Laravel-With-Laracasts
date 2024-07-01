@@ -2,9 +2,12 @@
     <x-slot:heading>
         Job Description
     </x-slot:heading>
-    <a href="/jobs" class="border border-gray-400 p-2 rounded-lg hover:bg-gray-400 hover:text-white">Go Back</a>
-    <div>
-        <h2 class="mt-10">{{ $job['title'] }}</h2>
-        <p>This job pays {{ $job['salary'] }}</p>
+    <x-button href="/jobs">Return</x-button>
+    <div class="flex flex-col gap-3">
+        <h2 class="mt-4 font-bold text-4xl">{{ $job['title'] }}</h2>
+        <p>This job pays <span class="font-bold">{{ $job['salary'] }} USD</span></p>
     </div>
+    
+    <x-button href="" class="mt-4 ">Update</x-button>
+    <x-button href="" class="mt-4 ">Delete</x-button>
 </x-layout>
