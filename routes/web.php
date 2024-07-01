@@ -7,8 +7,10 @@ Route::get('/', function () {
     return view('home');
 });
 
+//Jobs Route 
+//Get Requests
 Route::get('/jobs', function () {
-    $jobs = Job::with('employer')->paginate(9);
+    $jobs = Job::with('employer')->latest()->paginate(9);
     return view('jobs.index',  [
         'jobs' => $jobs
     ]);
@@ -23,6 +25,15 @@ Route::get('/jobs/{id}', function ($id) {
     return view('jobs.show', ['job' => $job]);
 });
 
+//Post Request for Jobs
+Route::post('/jobs', function() {
+    Job::create([
+        'title' => request('title'),
+        'salary' => request('salary'),
+        'employer_id' => 1
+    ]);
+    return redirect('/jobs');
+});
 
 Route::get('/contact', function () {
     return view('contact');
