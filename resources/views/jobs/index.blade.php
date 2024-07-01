@@ -1,6 +1,6 @@
 <x-layout>
     <x-slot:heading>
-        Jobs Listings
+        All Available Jobs
     </x-slot:heading>
     <div class="flex justify-between gap-y-8 flex-wrap">
         @foreach ($jobs as $job)

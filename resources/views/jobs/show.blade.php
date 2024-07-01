@@ -1,6 +1,6 @@
 <x-layout>
     <x-slot:heading>
-        Job
+        Job Description
     </x-slot:heading>
     <a href="/jobs" class="border border-gray-400 p-2 rounded-lg hover:bg-gray-400 hover:text-white">Go Back</a>
     <div>
