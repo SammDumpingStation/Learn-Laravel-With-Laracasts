@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Tag extends Model
 {
     use HasFactory;
+
+    protected function jobs() {
+        return $this->belongsToMany(Job::class, relatedPivotKey: 'job_listings_id');
+    }
+
+    protected function posts() {
+        return $this->belongsToMany(Post::class);
+    }
 }
