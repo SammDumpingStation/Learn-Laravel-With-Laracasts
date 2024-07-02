@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\JobController;
 use App\Models\Job;
 use Illuminate\Support\Facades\Route;
 
@@ -7,38 +8,31 @@ Route::get('/', function () {
     return view('home');
 });
 
-//Jobs Route 
+//Jobs Route
 //Get Requests
-Route::get('/jobs', function () {
-    $jobs = Job::with('employer')->latest()->paginate(9);
-    return view('jobs.index',  [
-        'jobs' => $jobs
-    ]);
-});
 
-Route::get('/jobs/create', function () {
-    return view('jobs.create');
-});
+//Index -> Shows all the jobs
+Route::get('/jobs', [JobController::class, 'index']);
 
-Route::get('/jobs/{id}', function ($id) {
-    $job = Job::find($id);
-    return view('jobs.show', ['job' => $job]);
-});
+//Create -> Create a Job
+Route::get('/jobs/create', [JobController::class, 'create']);
+
+//Show -> Shows the job clicked
+Route::get('/jobs/{job}', 'show');
+
+//Edit -> Redirects to the edit job page
+Route::get('/jobs/{job}/edit', 'edit');
 
 //Post Request for Jobs
-Route::post('/jobs', function() {
-    request()->validate([
-        'title' => ['required', 'min:3'],
-        'salary' => ['required']
-    ]);
+//Store ->  Gets the information from the POST form request and store it in the database
+Route::post('/jobs', [JobController::class, 'store']);
 
-    Job::create([
-        'title' => request('title'),
-        'salary' => request('salary'),
-        'employer_id' => 1
-    ]);
-    return redirect('/jobs');
-});
+//PATCH
+//Update ->  Updates the current job
+Route::patch('/jobs/{job}', [JobController::class, 'update']);
+
+//Destroy
+Route::delete('/jobs/{job}', [JobController::class, 'destroy']);
 
 Route::get('/contact', function () {
     return view('contact');
