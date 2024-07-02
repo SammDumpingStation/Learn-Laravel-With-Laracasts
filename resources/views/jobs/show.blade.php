@@ -8,7 +8,7 @@
     </div>
 
     <div class="flex gap-4 justify-end items-center  pt-10">
-        <a href="/jobs">Cancel</a>
-        <x-button href="/jobs/{{ $job->id }}/edit">Edit</x-button>
+        <x-form-cancel href="/jobs" type="button">Cancel</x-form-cancel>
+        <x-form-button href="/jobs/{{ $job->id }}/edit">Edit</x-form-button>
     </div>
 </x-layout>
